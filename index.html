@@ -1,0 +1,659 @@
+<html><head>
+	
+
+<script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript">
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-34928764-12 ', 'auto');
+    ga('send', 'pageview');
+</script>
+	        <script type="text/javascript" src="https://ustat.mur.gov.it/Scripts/UmbracoGAEventTracking.js"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                var tracker = new UmbracoGAEventTracking(
+                    1181,
+                    /{[A-Za-z0-9_-]+}+/g);
+                tracker.init();
+            };
+        </script>
+
+    
+	<!-- TITLE SECTION -->
+    <title>USTAT - Esplora i dati</title>
+
+    <!-- META SECTION -->
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="author" content="USTAT">
+	<meta name="classification" content="USTAT">
+	<meta name="owner" content="USTAT">
+	<meta name="description" content="Statistica e studi settori Università, AFAM e Ricerca">
+		<meta name="keywords" content="ustat,statistica,studi,settori,universita,afam,ricerca">
+		
+	<!-- META PROPERTIES FOR FACEBOOK -->
+	<meta property="og:title" content="Esplora i dati">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://ustat.mur.gov.it/dati/">
+	<meta property="og:site_name" content="USTAT">
+	<meta property="og:description" content="Statistica e studi settori Università, AFAM e Ricerca">
+
+    <!-- CSS SECTION -->
+    <!-- ### Bootstrap - Latest compiled and minified CSS ### -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- ### Bootstrap - Optional theme ### -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<!-- ### USTAT - Style ### -->
+	<link rel="stylesheet" href="https://ustat.mur.gov.it/css/style.css">
+	<link rel="stylesheet" href="https://ustat.mur.gov.it/css/ustatStyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700" rel="stylesheet">
+    
+    <!-- ### D3,ND3 e Highcharts ### -->
+    <link rel="stylesheet" href="https://ustat.mur.gov.it/css/nvd3.css">
+
+    <!-- ### DataTable ### -->
+    <link rel="stylesheet" type="text/css" href="https://ustat.mur.gov.it/css/dataTable/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://ustat.mur.gov.it/css/dataTable/dataTables.bootstrap.min.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+	<style>
+    /* Contenitore dell'icona */
+    .table-tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      color: #007BFF; /* Icona sempre blu */
+    }
+
+.table-tooltip .custom-tooltip {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: calc(120% + 10px);
+  transform: translateY(-50%);
+  background-color: #fff; /* Sfondo bianco */
+  color: #333;
+  padding: 15px;
+  border: none; /* Rimosso bordo */
+  border-radius: 4px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 15px;
+  white-space: normal;
+  width: 300px;
+  line-height: 1.6;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Ombra più marcata */
+}
+
+/* Freccia sul bordo sinistro del tooltip */
+.table-tooltip .custom-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -30px; /* sposta la freccia fuori dal tooltip */
+  transform: translateY(-50%);
+  border-width: 20px; /* Freccia più grande */
+  border-style: solid;
+  border-color: transparent #fff transparent transparent; /* Freccia bianca */
+}
+
+    /* Mostra tooltip al passaggio del mouse */
+    .table-tooltip:hover .custom-tooltip {
+      display: block;
+    }
+
+    /* Titolo nel tooltip (più grande) */
+    .custom-tooltip strong {
+      display: block;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+.table-tooltip-left .custom-tooltip {
+  top: 50%;
+  right: calc(120% + 10px); /* Posiziona a sinistra */
+  left: auto;
+  transform: translateY(-50%);
+}
+
+.table-tooltip-left .custom-tooltip::before {
+  top: 50%;
+  right: -30px;
+  left: auto;
+  transform: translateY(-50%);
+  border-width: 20px;
+  border-style: solid;
+  border-color: transparent transparent transparent #fff;
+}
+
+	</style>
+
+    <!-- SCRIPTS SECTION -->
+    <!-- ### Jquery - Latest compiled and minified JavaScript ### -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<!-- ### Bootstrap - Latest compiled and minified JavaScript ### -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!-- ### D3, ND3 e Highcharts ### -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js" charset="utf-8"></script>
+    <script src="https://ustat.mur.gov.it/scripts/nvd3/nv.d3.js"></script>
+
+    <!-- ### DataTable ### -->
+    <script src="https://ustat.mur.gov.it/scripts/dataTable/jquery.dataTables.min.js" type="text/javascript" language="javascript"></script>
+	<script src="https://ustat.mur.gov.it/scripts/dataTable/dataTables.bootstrap.min.js" type="text/javascript" language="javascript"></script>
+
+    
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>	
+
+
+	
+
+<script type="text/javascript" charset="UTF-8" src="https://www.gstatic.com/charts/51/loader.js"></script><link id="load-css-0" rel="stylesheet" type="text/css" href="https://www.gstatic.com/charts/51/css/core/tooltip.css"><link id="load-css-1" rel="stylesheet" type="text/css" href="https://www.gstatic.com/charts/51/css/util/util.css"><script type="text/javascript" charset="UTF-8" src="https://www.gstatic.com/charts/51/i18n/jsapi_compiled_i18n_default_module__it.js"></script><script type="text/javascript" charset="UTF-8" src="https://www.gstatic.com/charts/51/i18n/jsapi_compiled_i18n_graphics_module__it.js"></script><script type="text/javascript" charset="UTF-8" src="https://www.gstatic.com/charts/51/i18n/jsapi_compiled_i18n_ui_module__it.js"></script><script type="text/javascript" charset="UTF-8" src="https://www.gstatic.com/charts/51/i18n/jsapi_compiled_i18n_corechart_module__it.js"></script></head>
+
+<body style="background-color: #ffffff;">
+    
+    
+
+    
+    
+		
+<div class="container" style="margin-bottom: 20px;">
+	
+    <div class="row">
+    	
+
+		<div class="col-xs-9 col-xs-offset-1">
+        	<div class="page-dati">
+				<div class="dati-title">
+					<div class="section-title"><a href="https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino">portale dei dati dell'istruzione superiore | MUR <i class="fas fa-up-right-from-square"></i></a></div>
+					<h1 style="text-transform: uppercase;">Università degli Studi di Cassino e del Lazio Meridionale</h1>
+					<!-- <div class="filter-title" style="text-transform: capitalize;">Dati: italia</div> -->
+				</div>
+            	<!-- <h1>DIDATTICA / ITALIA / ATENEI STATALI / CASSINO</h1> -->
+				<!--
+				<div class="objTitle">Informazioni generali (html)</div>
+				<div class="row">
+					<div class="col-xs-6 info-numbers sx">
+						<div class="title">Immatricolati</div>
+						<div class="number">9.633</div>
+						<div class="subtitle">di cui 4.123 donne</div>
+						<div class="year">A.A. 2015/2016</div>
+					</div>
+					<div class="col-xs-6 info-numbers">
+						<div class="title">Laureati</div>
+						<div class="number">7.235</div>
+						<div class="subtitle">di cui 3.133 donne</div>
+						<div class="year">A.A. 2015/2016</div>
+					</div>
+				</div>
+				-->	
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-tabs-responsive nav-justified" role="tablist">
+                    <li class="nav-item active">
+                        <a class="nav-link" data-toggle="tab" href="#riepilogo" data-link="#tabriepilogo" role="tab">Riepilogo</a>
+                    </li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#studenti" data-link="#tabstudenti" role="tab">Studenti</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#personale" data-link="#tabpersonale" role="tab">Personale</a>
+							</li>						
+
+					<!--
+					<li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#sedi" data-link="#tabsedi" role="tab">Sedi</a>
+                    </li>
+					-->
+                </ul>
+							
+                <div class="tab-content">
+                    <div class="tab-pane active" id="riepilogo" role="tabpanel" style="background-color: #ffffff;min-height: 400px;padding: 30px 10px 0px 10px;">                        
+<!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Popolazione studentesca</div>
+    <div id="T01-STUD_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T01-STUD" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 192.2px;">Studenti</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 116.2px;">Totali</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 78.2px;">di cui donne</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 84.2px;">di cui studenti internazionali <span class="table-tooltip glyphicon glyphicon-info-sign" style="color:blue;"><div class="custom-tooltip text-left"><strong>di cui studenti internazionali</strong> Per Studente INTERNAZIONALE si intende studente che ha conseguito il diploma di scuola secondaria superiore all estero, a prescindere dalla cittadinanza, dalla residenza, dallo stato di nascita o da qualsiasi altra variabile. Questo numero è un [Di Cui] del totale.</div></span></th><th class="sorting_disabled text-center" rowspan="1" colspan="1" style="width: 117px;">Anno di riferimento</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">Immatricolati <span class="table-tooltip glyphicon glyphicon-info-sign" color="blue"><span class="custom-tooltip"><strong>Immatricolati</strong> Per IMMATRICOLATO nell a.a. t/t+1: si intende uno studente che si iscrive per la prima volta nella vita nell a.a. t/t+1 ad un corso universitario presso una università italiana (sono esclusi i corsi di laurea magistrale biennale).</span></span></td><td class=" text-right">1.475</td><td class=" text-right">737</td><td class=" text-right">367</td><td class=" text-center">2024/2025</td></tr><tr role="row" class="even"><td class=" text-left">Iscritti <span class="table-tooltip glyphicon glyphicon-info-sign" color="blue"><span class="custom-tooltip"><strong>Iscritti</strong> Per ISCRITTO nell a.a. t/t+1 si intende uno studente che alla data del 31/7/t+1 risulta iscritto all a.a. t/t+1.</span></span></td><td class=" text-right">7.433</td><td class=" text-right">4.007</td><td class=" text-right">1.751</td><td class=" text-center">2024/2025</td></tr><tr role="row" class="odd"><td class=" text-left">Laureati</td><td class=" text-right">1.485</td><td class=" text-right">739</td><td class=" text-right">175</td><td class=" text-center">2024</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">Per ISCRITTO nell’a.a. t/t+1 si intende uno studente che alla data del 31/7/t+1 risulta iscritto all'a.a. t/t+1.
+Per IMMATRICOLATO nell’a.a. t/t+1: si intende uno studente che si iscrive per la prima volta nella vita nell'a.a. t/t+1 ad un corso universitario presso un’università italiana (sono esclusi i corsi di laurea magistrale biennale).
+I dati relativi ai totali per REGIONE sono riferiti alla sede didattica del corso di studio, mentre i dati riportati per Istituto riguardano gli studenti iscritti all’Istituto stesso. 
+</div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T01-STUD').DataTable({
+                data: [["Immatricolati <span class='table-tooltip glyphicon glyphicon-info-sign' color='blue'><span class='custom-tooltip'><strong>Immatricolati</strong> Per IMMATRICOLATO nell a.a. t/t+1: si intende uno studente che si iscrive per la prima volta nella vita nell a.a. t/t+1 ad un corso universitario presso una università italiana (sono esclusi i corsi di laurea magistrale biennale).</span></span>","1475","737","367","2024/2025"],["Iscritti <span class='table-tooltip glyphicon glyphicon-info-sign' color='blue'><span class='custom-tooltip'><strong>Iscritti</strong> Per ISCRITTO nell a.a. t/t+1 si intende uno studente che alla data del 31/7/t+1 risulta iscritto all a.a. t/t+1.</span></span>","7433","4007","1751","2024/2025"],["Laureati","1485","739","175","2024"]],
+                columns: [{title:"Studenti",type:"string",className:"text-left",width:"30%"},{title:"Totali",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"di cui donne",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"di cui studenti internazionali <span class='table-tooltip glyphicon glyphicon-info-sign' style='color:blue;'><div class='custom-tooltip text-left'><strong>di cui studenti internazionali</strong> Per Studente INTERNAZIONALE si intende studente che ha conseguito il diploma di scuola secondaria superiore all estero, a prescindere dalla cittadinanza, dalla residenza, dallo stato di nascita o da qualsiasi altra variabile. Questo numero è un [Di Cui] del totale.</div></span>",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"Anno di riferimento",type:"string",className:"text-center",width:"20%"}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T01-STUD')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div><!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Personale di Ateneo - anno 2024</div>
+    <div id="T02-PERS_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T02-PERS" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 347.2px;">Tipologia</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 117.2px;">Personale</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 195px;">di cui professori a contratto (%)</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">Personale docente e ricercatore <span class="table-tooltip glyphicon glyphicon-info-sign" color="blue"><span class="custom-tooltip"><strong>Personale docente e ricercatore</strong> Il Personale docente e ricercatore comprende i docenti di ruolo, i ricercatori a tempo indeterminato e determinato, i titolari di assegni di ricerca ed i docenti a contratto.</span></span></td><td class=" text-right">541</td><td class=" text-right">38.8</td></tr><tr role="row" class="even"><td class=" text-left">Personale non docente <span class="table-tooltip glyphicon glyphicon-info-sign" color="blue"><span class="custom-tooltip"><strong>Personale non docente</strong> Il Personale non docente comprende i tecnici - amministrativi, i dirigenti di prima e seconda fascia ed i collaboratori linguistici. </span></span></td><td class=" text-right">254</td><td class=" text-right">-</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">Il Personale docente e ricercatore comprende i docenti di ruolo, i ricercatori a tempo indeterminato e determinato, i titolari di assegni di ricerca ed i docenti a contratto.
+Il personale docente a contratto comprende tutti i professori cui sono stati conferiti incarichi di insegnamento - anche a titolo gratuito - per attività formative di base, caratterizzanti, affini o integrative non già ricoperti dal personale docente di ruolo.
+Il Personale non docente comprende i tecnici - amministrativi, i dirigenti di prima e seconda fascia ed i collaboratori linguistici.
+Tutti i dati sono estratti al 31/12/T ad eccezione dei docenti a contratto rilevati per anno accademico. Il dato indicato per questi ultimi si riferisce all'a.a. (T-1)/T.	</div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T02-PERS').DataTable({
+                data: [["Personale docente e ricercatore <span class='table-tooltip glyphicon glyphicon-info-sign' color='blue'><span class='custom-tooltip'><strong>Personale docente e ricercatore</strong> Il Personale docente e ricercatore comprende i docenti di ruolo, i ricercatori a tempo indeterminato e determinato, i titolari di assegni di ricerca ed i docenti a contratto.</span></span>","541","38.8"],["Personale non docente <span class='table-tooltip glyphicon glyphicon-info-sign' color='blue'><span class='custom-tooltip'><strong>Personale non docente</strong> Il Personale non docente comprende i tecnici - amministrativi, i dirigenti di prima e seconda fascia ed i collaboratori linguistici. </span></span>","254","-"]],
+                columns: [{title:"Tipologia",type:"string",className:"text-left",width:"50%"},{title:"Personale",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"di cui professori a contratto (%)",type:"string",className:"text-right",width:"30%"}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T02-PERS')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div><!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Contribuzione media, esoneri e borse di studio per studenti iscritti a corsi di laurea triennale, magistrale e a ciclo unico - a.a. 2023/2024</div>
+    <div id="T03-DSU_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T03-DSU" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 501.2px;">Contribuzione media, esoneri e borse di studio</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 195px;">Corsi di laurea</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">Contribuzione media (€) <span class="table-tooltip glyphicon glyphicon-info-sign" color="blue"><span class="custom-tooltip"><strong>Contribuzione media (€)</strong> La contribuzione media è calcolata sulla base delle tasse realmente pagate (al netto della tassa regionale per il DSU e dell imposta di bollo dove previste), escludendo gli studenti esonerati totalmente, gli studenti per i quali la contribuzione non è prevista o è finanziata da enti esterni.</span></span></td><td class=" text-right">1.135</td></tr><tr role="row" class="even"><td class=" text-left">Studenti totalmente esonerati <span class="table-tooltip glyphicon glyphicon-info-sign" color="blue"><span class="custom-tooltip"><strong>Studenti totalmente esonerati</strong> Sono considerati studenti esonerati anche gli studenti per i quali la contribuzione non è prevista o è finanziata da enti esterni.</span></span></td><td class=" text-right">3.974</td></tr><tr role="row" class="odd"><td class=" text-left">Beneficiari di borse studio regionali <span class="table-tooltip glyphicon glyphicon-info-sign" color="blue"><span class="custom-tooltip"><strong>Beneficiari di borse studio regionali</strong> Per [borsa di studio regionale] si intende la borsa di studio assegnata in base al d.lgs. 68/12</span></span></td><td class=" text-right">2.316</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">Sono considerati studenti esonerati anche gli studenti per i quali la contribuzione non è prevista o è finanziata da enti esterni. La contribuzione media è calcolata sulla base delle tasse realmente pagate (al netto della tassa regionale per il DSU e dell’imposta di bollo dove previste), escludendo gli studenti esonerati totalmente, gli studenti per i quali la contribuzione non è prevista o è finanziata da enti esterni.	</div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T03-DSU').DataTable({
+                data: [["Contribuzione media (€) <span class='table-tooltip glyphicon glyphicon-info-sign' color='blue'><span class='custom-tooltip'><strong>Contribuzione media (€)</strong> La contribuzione media è calcolata sulla base delle tasse realmente pagate (al netto della tassa regionale per il DSU e dell imposta di bollo dove previste), escludendo gli studenti esonerati totalmente, gli studenti per i quali la contribuzione non è prevista o è finanziata da enti esterni.</span></span>","1135"],["Studenti totalmente esonerati <span class='table-tooltip glyphicon glyphicon-info-sign' color='blue'><span class='custom-tooltip'><strong>Studenti totalmente esonerati</strong> Sono considerati studenti esonerati anche gli studenti per i quali la contribuzione non è prevista o è finanziata da enti esterni.</span></span>","3974"],["Beneficiari di borse studio regionali <span class='table-tooltip glyphicon glyphicon-info-sign' color='blue'><span class='custom-tooltip'><strong>Beneficiari di borse studio regionali</strong> Per [borsa di studio regionale] si intende la borsa di studio assegnata in base al d.lgs. 68/12</span></span>","2316"],],
+                columns: [{title:"Contribuzione media, esoneri e borse di studio",type:"string",className:"text-left",width:"70%"},{title:"Corsi di laurea",type:"num",className:"text-right",width:"30%",render: $.fn.dataTable.render.number('.', ',', 0, '')}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T03-DSU')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div>
+                    </div>
+                    <div class="tab-pane" id="studenti" role="tabpanel" style="background-color: #ffffff;min-height: 400px;padding: 30px 10px 0px 10px;">
+<!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Studenti per tipologia di Corso di Laurea a.a. 2024/25</div>
+    <div id="T06-STUD-CDL_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T06-STUD-CDL" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 0px;">Corsi di Laurea</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Iscritti</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Immatricolati</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Laureati</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">Laurea</td><td class=" text-right">4.937</td><td class=" text-right">1.358</td><td class=" text-right">869</td></tr><tr role="row" class="even"><td class=" text-left">Laurea Magistrale</td><td class=" text-right">1.786</td><td class=" text-right">-</td><td class=" text-right">567</td></tr><tr role="row" class="odd"><td class=" text-left">LM a Cliclo Unico</td><td class=" text-right">658</td><td class=" text-right">117</td><td class=" text-right">47</td></tr><tr role="row" class="even"><td class=" text-left">Vecchio Ordinamento</td><td class=" text-right">52</td><td class=" text-right">-</td><td class=" text-right">2</td></tr><tr role="row" class="odd"><td class=" text-left">Totale</td><td class=" text-right">7.433</td><td class=" text-right">1.475</td><td class=" text-right">1.485</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">I dati relativi al numero di laureati sono riportati per l'anno solare (T-1).</div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T06-STUD-CDL').DataTable({
+                data: [["Laurea","4937","1358","869"],["Laurea Magistrale","1786","-","567"],["LM a Cliclo Unico","658","117","47"],["Vecchio Ordinamento","52","-","2"],["Totale","7433","1475","1485"]],
+                columns: [{title:"Corsi di Laurea",type:"string",className:"text-left",width:"40%"},{title:"Iscritti",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"Immatricolati",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"Laureati",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T06-STUD-CDL')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div><!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Studenti per Corsi di Post Laurea a.a. 2023/24</div>
+    <div id="T06-STUD-PL_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T06-STUD-PL" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 0px;">Corsi Post Laurea</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Iscritti</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">di cui nuovi ingressi</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">studenti che hanno conseguito il titolo</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">Scuole di specializzazione</td><td class=" text-right"></td><td class=" text-right"></td><td class=" text-right"></td></tr><tr role="row" class="even"><td class=" text-left">Master 1 e 2 livello</td><td class=" text-right">153</td><td class=" text-right">-</td><td class=" text-right">203</td></tr><tr role="row" class="odd"><td class=" text-left">Dottorati di ricerca</td><td class=" text-right">143</td><td class=" text-right">40</td><td class=" text-right">28</td></tr><tr role="row" class="even"><td class=" text-left">Totale</td><td class=" text-right">296</td><td class=" text-right">40</td><td class=" text-right">231</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">I dati relativi agli Iscritti alle scuole di specializzazione sono riportati secondo l'anno accademico di frequenza del corso e non in base all'a.a. del bando. </div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T06-STUD-PL').DataTable({
+                data: [["Scuole di specializzazione","","",""],["Master 1 e 2 livello","153","-","203"],["Dottorati di ricerca","143","40","28"],["Totale","296","40","231"]],
+                columns: [{title:"Corsi Post Laurea",type:"string",className:"text-left",width:"40%"},{title:"Iscritti",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"di cui nuovi ingressi",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"studenti che hanno conseguito il titolo",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')}]
+,
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T06-STUD-PL')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div><!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Studenti esonerati dal pagamento dei contributi in valori assoluti ed in percentuale - a.a. 2023/24 (dati al 31/12/2024)</div>
+    <div id="T07-ESO_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T07-ESO" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 0px;">Studenti esonerati</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Totalmente (v.a.)</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Totalmente %</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Parzialmente (v.a.)</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Parzialmente %</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">Corsi di Laurea</td><td class=" text-right">3.974</td><td class=" text-right">55,4</td><td class=" text-right">950</td><td class=" text-right">13,2</td></tr><tr role="row" class="even"><td class=" text-left">Corsi di dottorato</td><td class=" text-right">142</td><td class=" text-right">100,0</td><td class=" text-right">0</td><td class=" text-right">0,0</td></tr><tr role="row" class="odd"><td class=" text-left">Corsi di specializzazione</td><td class=" text-right">0</td><td class=" text-right">0,0</td><td class=" text-right">0</td><td class=" text-right">0,0</td></tr><tr role="row" class="even"><td class=" text-left">Corsi di master I e II livello</td><td class=" text-right">100</td><td class=" text-right">42,2</td><td class=" text-right">0</td><td class=" text-right">0,0</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">Sono considerati studenti esonerati anche gli studenti per i quali la contribuzione non è prevista o è finanziata da enti esterni.</div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T07-ESO').DataTable({
+                data: [["Corsi di Laurea","3974","55.4","950","13.2"],["Corsi di dottorato","142","100.0","0",".0"],["Corsi di specializzazione","0",".0","0",".0"],["Corsi di master I e II livello","100","42.2","0",".0"]],
+                columns: [{title:"Studenti esonerati",type:"string",className:"text-left",width:"40%"},{title:"Totalmente (v.a.)",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"Totalmente %",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 1, '')},{title:"Parzialmente (v.a.)",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"Parzialmente %",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 1, '')}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T07-ESO')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div><!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Studenti coinvolti in programmi di mobilità internazionale in valori assoluti ed in percentuale - a.a. 2023/24 (dati al 31/12/2024)</div>
+    <div id="T08-STUD-MOB_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T08-STUD-MOB" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 0px;">Mobilità internazionale</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Studenti di Corsi di Laurea (v.a.)</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Studenti di Corsi di Laurea (%)</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Studenti di Dottorato (v.a.)</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Studenti Dottorato (%)</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">N.studenti iscritti coinvolti in scambi internazionali IN USCITA</td><td class=" text-right">182</td><td class=" text-right">2,5</td><td class=" text-right">31</td><td class=" text-right">21,8</td></tr><tr role="row" class="even"><td class=" text-left">N.studenti di istituti esteri coinvolti in scambi internazionali IN ENTRATA</td><td class=" text-right">49</td><td class=" text-right">-</td><td class=" text-right">0</td><td class=" text-right">-</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;"></div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T08-STUD-MOB').DataTable({
+                data: [["N.studenti iscritti coinvolti in scambi internazionali IN USCITA","182","2.5","31","21.8"],["N.studenti di istituti esteri coinvolti in scambi internazionali IN ENTRATA","49","-","0","-"]],
+                columns: [{title:"Mobilità internazionale",type:"string",className:"text-left",width:"35%"},{title:"Studenti di Corsi di Laurea (v.a.)",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"Studenti di Corsi di Laurea (%)",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 1, '')},{title:"Studenti di Dottorato (v.a.)",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"Studenti Dottorato (%)",type:"num",className:"text-right",width:"15%",render: $.fn.dataTable.render.number('.', ',', 1, '')}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T08-STUD-MOB')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div><script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Anno','Totali','di cui donne'],['2020/2021',1244,666],['2021/2022',1266,628],['2022/2023',1222,615],['2023/2024',1590,837],['2024/2025',1475,737]]);
+		var options = {width: 800,height: 400,vAxis: {minValue: 0},colors: ['#8CCBD4','#FFA74F']};
+		var chart = new google.visualization.ColumnChart(document.getElementById('G15-IMM-STORIA'));
+		chart.draw(data, options);
+	}
+</script>
+
+<div class="multiBarChart-container" style="margin-bottom: 40px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Serie storica degli studenti immatricolati ai corsi di studio triennali e a ciclo unico</div>
+	<div id="G15-IMM-STORIA" style="width: 800px; height: 400px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 400px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="400" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_0"><clipPath id="_ABSTRACT_RENDERER_ID_1"><rect x="134" y="77" width="533" height="247"></rect></clipPath><filter id="_ABSTRACT_RENDERER_ID_20"><feGaussianBlur in="SourceAlpha" stdDeviation="2"></feGaussianBlur><feOffset dx="1" dy="1"></feOffset><feComponentTransfer><feFuncA type="linear" slope="0.1"></feFuncA></feComponentTransfer><feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs><rect x="0" y="0" width="800" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="34" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="88.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Totali</text></g><rect x="680" y="77" width="26" height="13" stroke="none" stroke-width="0" fill="#8ccbd4"></rect></g><g><rect x="680" y="98" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="109.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">di cui donne</text></g><rect x="680" y="98" width="26" height="13" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g></g><g><rect x="134" y="77" width="533" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_1)"><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="262" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="200" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="139" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="77" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="292" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="231" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="169" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="108" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="155" y="171" width="32" height="152" stroke="none" stroke-width="0" fill="#8ccbd4"></rect><rect x="261" y="168" width="33" height="155" stroke="none" stroke-width="0" fill="#8ccbd4"></rect><rect x="368" y="174" width="32" height="149" stroke="none" stroke-width="0" fill="#8ccbd4"></rect><rect x="474" y="128" width="32" height="195" stroke="none" stroke-width="0" fill="#8ccbd4"></rect><rect x="580" y="143" width="33" height="180" stroke="none" stroke-width="0" fill="#8ccbd4"></rect><rect x="188" y="242" width="33" height="81" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="295" y="247" width="32" height="76" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="401" y="248" width="32" height="75" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="507" y="221" width="33" height="102" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="614" y="233" width="32" height="90" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#333333"></rect></g></g><g></g><g><g><text text-anchor="middle" x="187.7" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2020/2021</text></g><g><text text-anchor="middle" x="294.1" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2021/2022</text></g><g><text text-anchor="middle" x="400.5" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2022/2023</text></g><g><text text-anchor="middle" x="506.90000000000003" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2023/2024</text></g><g><text text-anchor="middle" x="613.3" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2024/2025</text></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Anno</th><th>Totali</th><th>di cui donne</th></tr></thead><tbody><tr><td>2020/2021</td><td>1.244</td><td>666</td></tr><tr><td>2021/2022</td><td>1.266</td><td>628</td></tr><tr><td>2022/2023</td><td>1.222</td><td>615</td></tr><tr><td>2023/2024</td><td>1.590</td><td>837</td></tr><tr><td>2024/2025</td><td>1.475</td><td>737</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 13px; font-weight: bold;">1.266</div><div></div></div></div>		
+    <div class="objDescription" style="font-size: 1.1em;"></div>	
+</div><script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Anno','Totali','di cui donne'],['2020/2021',165,73],['2021/2022',199,97],['2022/2023',168,97],['2023/2024',504,273],['2024/2025',367,171]]);
+		var options = {width: 800,height: 400,vAxis: {minValue: 0},colors: ['#9DDC94','#FFA74F']};
+		var chart = new google.visualization.ColumnChart(document.getElementById('G16-IMM-STORIA'));
+		chart.draw(data, options);
+	}
+</script>
+
+<div class="multiBarChart-container" style="margin-bottom: 40px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Serie storica degli studenti internazionali immatricolati ai corsi di studio triennali e a ciclo unico</div>
+	<div id="G16-IMM-STORIA" style="width: 800px; height: 400px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 400px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="400" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_2"><clipPath id="_ABSTRACT_RENDERER_ID_3"><rect x="134" y="77" width="533" height="247"></rect></clipPath><filter id="_ABSTRACT_RENDERER_ID_21"><feGaussianBlur in="SourceAlpha" stdDeviation="2"></feGaussianBlur><feOffset dx="1" dy="1"></feOffset><feComponentTransfer><feFuncA type="linear" slope="0.1"></feFuncA></feComponentTransfer><feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs><rect x="0" y="0" width="800" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="34" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="88.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Totali</text></g><rect x="680" y="77" width="26" height="13" stroke="none" stroke-width="0" fill="#9ddc94"></rect></g><g><rect x="680" y="98" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="109.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">di cui donne</text></g><rect x="680" y="98" width="26" height="13" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g></g><g><rect x="134" y="77" width="533" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_3)"><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="282" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="241" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="200" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="159" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="118" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="77" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="303" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="262" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="221" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="180" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="139" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="98" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="155" y="256" width="32" height="67" stroke="none" stroke-width="0" fill="#9ddc94"></rect><rect x="261" y="242" width="33" height="81" stroke="none" stroke-width="0" fill="#9ddc94"></rect><rect x="368" y="255" width="32" height="68" stroke="none" stroke-width="0" fill="#9ddc94"></rect><rect x="474" y="117" width="32" height="206" stroke="none" stroke-width="0" fill="#9ddc94"></rect><rect x="580" y="174" width="33" height="149" stroke="none" stroke-width="0" fill="#9ddc94"></rect><rect x="188" y="294" width="33" height="29" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="295" y="284" width="32" height="39" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="401" y="284" width="32" height="39" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="507" y="212" width="33" height="111" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="614" y="254" width="32" height="69" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#333333"></rect></g></g><g></g><g><g><text text-anchor="middle" x="187.7" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2020/2021</text></g><g><text text-anchor="middle" x="294.1" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2021/2022</text></g><g><text text-anchor="middle" x="400.5" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2022/2023</text></g><g><text text-anchor="middle" x="506.90000000000003" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2023/2024</text></g><g><text text-anchor="middle" x="613.3" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2024/2025</text></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Anno</th><th>Totali</th><th>di cui donne</th></tr></thead><tbody><tr><td>2020/2021</td><td>165</td><td>73</td></tr><tr><td>2021/2022</td><td>199</td><td>97</td></tr><tr><td>2022/2023</td><td>168</td><td>97</td></tr><tr><td>2023/2024</td><td>504</td><td>273</td></tr><tr><td>2024/2025</td><td>367</td><td>171</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 13px; font-weight: bold;">199</div><div></div></div></div>		
+    <div class="objDescription" style="font-size: 1.1em;">Per STUDENTE INTERNAZIONALE si intende lo studente che ha conseguito il diploma di scuola secondaria superiore all’estero, a prescindere dalla cittadinanza, dalla residenza, dallo stato di nascita o da qualsiasi altra variabile.</div>	
+</div><script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Anno','Totali','di cui donne'],['2020/2021',7049,3783],['2021/2022',7280,3735],['2022/2023',7060,3647],['2023/2024',7378,3919],['2024/2025',7433,4007]]);
+		var options = {width: 800,height: 400,vAxis: {minValue: 0},colors: ['#5DB7C3','#FFA74F']};
+		var chart = new google.visualization.ColumnChart(document.getElementById('G17-ISC-CDL-STORIA'));
+		chart.draw(data, options);
+	}
+</script>
+
+<div class="multiBarChart-container" style="margin-bottom: 40px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Serie storica degli studenti iscritti ai corsi di Laurea</div>
+	<div id="G17-ISC-CDL-STORIA" style="width: 800px; height: 400px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 400px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="400" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_4"><clipPath id="_ABSTRACT_RENDERER_ID_5"><rect x="134" y="77" width="533" height="247"></rect></clipPath></defs><rect x="0" y="0" width="800" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="34" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="88.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Totali</text></g><rect x="680" y="77" width="26" height="13" stroke="none" stroke-width="0" fill="#5db7c3"></rect></g><g><rect x="680" y="98" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="109.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">di cui donne</text></g><rect x="680" y="98" width="26" height="13" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g></g><g><rect x="134" y="77" width="533" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_5)"><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="262" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="200" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="139" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="77" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="292" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="231" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="169" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="108" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="155" y="107" width="32" height="216" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="261" y="100" width="33" height="223" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="368" y="107" width="32" height="216" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="474" y="97" width="32" height="226" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="580" y="95" width="33" height="228" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="188" y="208" width="33" height="115" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="295" y="209" width="32" height="114" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="401" y="212" width="32" height="111" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="507" y="203" width="33" height="120" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="614" y="201" width="32" height="122" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#333333"></rect></g></g><g></g><g><g><text text-anchor="middle" x="187.7" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2020/2021</text></g><g><text text-anchor="middle" x="294.1" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2021/2022</text></g><g><text text-anchor="middle" x="400.5" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2022/2023</text></g><g><text text-anchor="middle" x="506.90000000000003" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2023/2024</text></g><g><text text-anchor="middle" x="613.3" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2024/2025</text></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Anno</th><th>Totali</th><th>di cui donne</th></tr></thead><tbody><tr><td>2020/2021</td><td>7.049</td><td>3.783</td></tr><tr><td>2021/2022</td><td>7.280</td><td>3.735</td></tr><tr><td>2022/2023</td><td>7.060</td><td>3.647</td></tr><tr><td>2023/2024</td><td>7.378</td><td>3.919</td></tr><tr><td>2024/2025</td><td>7.433</td><td>4.007</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 13px;">di cui donne</div><div></div></div></div>		
+    <div class="objDescription" style="font-size: 1.1em;"></div>	
+</div><script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Anno','Totali','di cui donne'],['2020/2021',648,217],['2021/2022',828,321],['2022/2023',957,411],['2023/2024',1553,718],['2024/2025',1751,818]]);
+		var options = {width: 800,height: 400,vAxis: {minValue: 0},colors: ['#63C755','#FFA74F']};
+		var chart = new google.visualization.ColumnChart(document.getElementById('G18-ISC-CDL-STORIA'));
+		chart.draw(data, options);
+	}
+</script>
+
+<div class="multiBarChart-container" style="margin-bottom: 40px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Serie storica degli studenti internazionali iscritti ai corsi di Laurea </div>
+	<div id="G18-ISC-CDL-STORIA" style="width: 800px; height: 400px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 400px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="400" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_6"><clipPath id="_ABSTRACT_RENDERER_ID_7"><rect x="134" y="77" width="533" height="247"></rect></clipPath></defs><rect x="0" y="0" width="800" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="34" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="88.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Totali</text></g><rect x="680" y="77" width="26" height="13" stroke="none" stroke-width="0" fill="#63c755"></rect></g><g><rect x="680" y="98" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="109.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">di cui donne</text></g><rect x="680" y="98" width="26" height="13" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g></g><g><rect x="134" y="77" width="533" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_7)"><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="262" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="200" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="139" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="77" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="292" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="231" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="169" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="108" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="155" y="244" width="32" height="79" stroke="none" stroke-width="0" fill="#63c755"></rect><rect x="261" y="222" width="33" height="101" stroke="none" stroke-width="0" fill="#63c755"></rect><rect x="368" y="206" width="32" height="117" stroke="none" stroke-width="0" fill="#63c755"></rect><rect x="474" y="133" width="32" height="190" stroke="none" stroke-width="0" fill="#63c755"></rect><rect x="580" y="109" width="33" height="214" stroke="none" stroke-width="0" fill="#63c755"></rect><rect x="188" y="297" width="33" height="26" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="295" y="285" width="32" height="38" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="401" y="273" width="32" height="50" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="507" y="236" width="33" height="87" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="614" y="223" width="32" height="100" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#333333"></rect></g></g><g></g><g><g><text text-anchor="middle" x="187.7" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2020/2021</text></g><g><text text-anchor="middle" x="294.1" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2021/2022</text></g><g><text text-anchor="middle" x="400.5" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2022/2023</text></g><g><text text-anchor="middle" x="506.90000000000003" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2023/2024</text></g><g><text text-anchor="middle" x="613.3" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2024/2025</text></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Anno</th><th>Totali</th><th>di cui donne</th></tr></thead><tbody><tr><td>2020/2021</td><td>648</td><td>217</td></tr><tr><td>2021/2022</td><td>828</td><td>321</td></tr><tr><td>2022/2023</td><td>957</td><td>411</td></tr><tr><td>2023/2024</td><td>1.553</td><td>718</td></tr><tr><td>2024/2025</td><td>1.751</td><td>818</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 13px;">di cui donne</div><div></div></div></div>		
+    <div class="objDescription" style="font-size: 1.1em;">Per STUDENTE INTERNAZIONALE si intende lo studente che ha conseguito il diploma di scuola secondaria superiore all’estero, a prescindere dalla cittadinanza, dalla residenza, dallo stato di nascita o da qualsiasi altra variabile.</div>	
+</div><script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Anno','Totali','di cui donne'],['2020',1401,839],['2021',1387,835],['2022',1260,695],['2023',1560,799],['2024',1485,739]]);
+		var options = {width: 800,height: 400,vAxis: {minValue: 0},colors: ['#41A4B1','#FFA74F']};
+		var chart = new google.visualization.ColumnChart(document.getElementById('G19-LAUREATI-STORIA'));
+		chart.draw(data, options);
+	}
+</script>
+
+<div class="multiBarChart-container" style="margin-bottom: 40px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Serie storica dei Laureati ai corsi di laurea</div>
+	<div id="G19-LAUREATI-STORIA" style="width: 800px; height: 400px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 400px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="400" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_8"><clipPath id="_ABSTRACT_RENDERER_ID_9"><rect x="134" y="77" width="533" height="247"></rect></clipPath><filter id="_ABSTRACT_RENDERER_ID_22"><feGaussianBlur in="SourceAlpha" stdDeviation="2"></feGaussianBlur><feOffset dx="1" dy="1"></feOffset><feComponentTransfer><feFuncA type="linear" slope="0.1"></feFuncA></feComponentTransfer><feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs><rect x="0" y="0" width="800" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="34" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="88.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Totali</text></g><rect x="680" y="77" width="26" height="13" stroke="none" stroke-width="0" fill="#41a4b1"></rect></g><g><rect x="680" y="98" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="109.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">di cui donne</text></g><rect x="680" y="98" width="26" height="13" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g></g><g><rect x="134" y="77" width="533" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_9)"><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="262" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="200" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="139" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="77" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="292" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="231" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="169" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="108" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="155" y="152" width="32" height="171" stroke="none" stroke-width="0" fill="#41a4b1"></rect><rect x="261" y="153" width="33" height="170" stroke="none" stroke-width="0" fill="#41a4b1"></rect><rect x="368" y="169" width="32" height="154" stroke="none" stroke-width="0" fill="#41a4b1"></rect><rect x="474" y="132" width="32" height="191" stroke="none" stroke-width="0" fill="#41a4b1"></rect><rect x="580" y="141" width="33" height="182" stroke="none" stroke-width="0" fill="#41a4b1"></rect><rect x="188" y="221" width="33" height="102" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="295" y="221" width="32" height="102" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="401" y="239" width="32" height="84" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="507" y="226" width="33" height="97" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="614" y="233" width="32" height="90" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#333333"></rect></g></g><g></g><g><g><text text-anchor="middle" x="187.7" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2020</text></g><g><text text-anchor="middle" x="294.1" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2021</text></g><g><text text-anchor="middle" x="400.5" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2022</text></g><g><text text-anchor="middle" x="506.90000000000003" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2023</text></g><g><text text-anchor="middle" x="613.3" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2024</text></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Anno</th><th>Totali</th><th>di cui donne</th></tr></thead><tbody><tr><td>2020</td><td>1.401</td><td>839</td></tr><tr><td>2021</td><td>1.387</td><td>835</td></tr><tr><td>2022</td><td>1.260</td><td>695</td></tr><tr><td>2023</td><td>1.560</td><td>799</td></tr><tr><td>2024</td><td>1.485</td><td>739</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 13px; font-weight: bold;">1.387</div><div></div></div></div>		
+    <div class="objDescription" style="font-size: 1.1em;"></div>	
+</div><script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Anno','Totali','di cui donne'],['2020',75,28],['2021',61,20],['2022',97,34],['2023',165,56],['2024',175,57]]);
+		var options = {width: 800,height: 400,vAxis: {minValue: 0},colors: ['#49B33B','#FFA74F']};
+		var chart = new google.visualization.ColumnChart(document.getElementById('G20-LAUREATI-STORIA'));
+		chart.draw(data, options);
+	}
+</script>
+
+<div class="multiBarChart-container" style="margin-bottom: 40px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Serie storica dei Laureati internazionali ai corsi di laurea</div>
+	<div id="G20-LAUREATI-STORIA" style="width: 800px; height: 400px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 400px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="400" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_10"><clipPath id="_ABSTRACT_RENDERER_ID_11"><rect x="134" y="77" width="533" height="247"></rect></clipPath></defs><rect x="0" y="0" width="800" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="34" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="88.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Totali</text></g><rect x="680" y="77" width="26" height="13" stroke="none" stroke-width="0" fill="#49b33b"></rect></g><g><rect x="680" y="98" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="109.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">di cui donne</text></g><rect x="680" y="98" width="26" height="13" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g></g><g><rect x="134" y="77" width="533" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_11)"><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="262" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="200" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="139" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="77" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="292" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="231" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="169" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="108" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="155" y="232" width="32" height="91" stroke="none" stroke-width="0" fill="#49b33b"></rect><rect x="261" y="249" width="33" height="74" stroke="none" stroke-width="0" fill="#49b33b"></rect><rect x="368" y="205" width="32" height="118" stroke="none" stroke-width="0" fill="#49b33b"></rect><rect x="474" y="121" width="32" height="202" stroke="none" stroke-width="0" fill="#49b33b"></rect><rect x="580" y="109" width="33" height="214" stroke="none" stroke-width="0" fill="#49b33b"></rect><rect x="188" y="290" width="33" height="33" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="295" y="299" width="32" height="24" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="401" y="282" width="32" height="41" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="507" y="255" width="33" height="68" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="614" y="254" width="32" height="69" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#333333"></rect></g></g><g></g><g><g><text text-anchor="middle" x="187.7" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2020</text></g><g><text text-anchor="middle" x="294.1" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2021</text></g><g><text text-anchor="middle" x="400.5" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2022</text></g><g><text text-anchor="middle" x="506.90000000000003" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2023</text></g><g><text text-anchor="middle" x="613.3" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2024</text></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Anno</th><th>Totali</th><th>di cui donne</th></tr></thead><tbody><tr><td>2020</td><td>75</td><td>28</td></tr><tr><td>2021</td><td>61</td><td>20</td></tr><tr><td>2022</td><td>97</td><td>34</td></tr><tr><td>2023</td><td>165</td><td>56</td></tr><tr><td>2024</td><td>175</td><td>57</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 13px;">di cui donne</div><div></div></div></div>		
+    <div class="objDescription" style="font-size: 1.1em;">Per STUDENTE INTERNAZIONALE si intende lo studente che ha conseguito il diploma di scuola secondaria superiore all’estero, a prescindere dalla cittadinanza, dalla residenza, dallo stato di nascita o da qualsiasi altra variabile.</div>	
+</div>
+                    </div>					
+					<div class="tab-pane" id="personale" role="tabpanel" style="background-color: #ffffff;min-height: 400px;padding: 30px 10px 0px 10px;">
+<!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Numerosità del personale presente negli atenei per tipologia  - anno 2024</div>
+    <div id="T09-PERS_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T09-PERS" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 0px;">Tipologia</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Personale</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">di cui donne</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left"><strong>Personale docente e ricercatore</strong></td><td class=" text-right">541</td><td class=" text-right">195</td></tr><tr role="row" class="even"><td class=" text-left">Docenti di ruolo</td><td class=" text-right">237</td><td class=" text-right">65</td></tr><tr role="row" class="odd"><td class=" text-left"><i>--- di cui professori di I fascia</i></td><td class=" text-right">89</td><td class=" text-right">16</td></tr><tr role="row" class="even"><td class=" text-left"><i>--- di cui professori di II fascia</i></td><td class=" text-right">109</td><td class=" text-right">36</td></tr><tr role="row" class="odd"><td class=" text-left"><i>--- di cui ricercatori a tempo indeterminato</i></td><td class=" text-right">39</td><td class=" text-right">13</td></tr><tr role="row" class="even"><td class=" text-left">Ricercatori a tempo determinato</td><td class=" text-right">43</td><td class=" text-right">16</td></tr><tr role="row" class="odd"><td class=" text-left">Docenti a contratto</td><td class=" text-right">210</td><td class=" text-right">89</td></tr><tr role="row" class="even"><td class=" text-left">Titolari assegni di ricerca</td><td class=" text-right">51</td><td class=" text-right">25</td></tr><tr role="row" class="odd"><td class=" text-left"><strong>Personale non docente</strong></td><td class=" text-right">254</td><td class=" text-right">136</td></tr><tr role="row" class="even"><td class=" text-left">Collaboratori linguistici</td><td class=" text-right">8</td><td class=" text-right">6</td></tr><tr role="row" class="odd"><td class=" text-left">Tecnici amm.vi a tempo indeterminato</td><td class=" text-right">239</td><td class=" text-right">128</td></tr><tr role="row" class="even"><td class=" text-left">Tecnici amm.vi a tempo determinato</td><td class=" text-right">7</td><td class=" text-right">2</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">Il Personale docente e ricercatore comprende i docenti di ruolo, i ricercatori a tempo determinato, i titolari di assegni di ricerca ed i docenti a contratto.
+Il personale docente a contratto comprende tutti i professori cui sono stati conferiti incarichi di insegnamento – anche a titolo gratuito - per attività formative di base, caratterizzanti, affini o integrative non già ricoperti dal personale docente di ruolo.
+Il Personale non docente comprende i tecnici – amministrativi, i dirigenti di prima e seconda fascia ed i collaboratori linguistici.
+Tutti i dati sono estratti al 31/12/T ad eccezione dei docenti a contratto rilevati per anno accademico. Il dato indicato per questi ultimi si riferisce all'a.a. (T-1)/T.</div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T09-PERS').DataTable({
+                data: [["<strong>Personale docente e ricercatore</strong>","541","195"],["Docenti di ruolo","237","65"],["<i>--- di cui professori di I fascia</i>","89","16"],["<i>--- di cui professori di II fascia</i>","109","36"],["<i>--- di cui ricercatori a tempo indeterminato</i>","39","13"],["Ricercatori a tempo determinato","43","16"],["Docenti a contratto","210","89"],["Titolari assegni di ricerca","51","25"],["<strong>Personale non docente</strong>","254","136"],["Collaboratori linguistici","8","6"],["Tecnici amm.vi a tempo indeterminato","239","128"],["Tecnici amm.vi a tempo determinato","7","2"]],
+                columns: [{title:"Tipologia",type:"string",className:"text-left",width:"60%"},{title:"Personale",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"di cui donne",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T09-PERS')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div><script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Anno','Uomini','Donne'],['2020',178,68],['2021',187,71],['2022',195,79],['2023',202,79],['2024',199,81]]);
+		var options = {width: 800,height: 400, bar: { groupWidth: '75%' }, isStacked: true,colors: ['#5DB7C3','#FFA74F']};
+		var chart = new google.visualization.ColumnChart(document.getElementById('G18-PERS-RUOLO-STORIA'));
+		chart.draw(data, options);
+	}
+</script>
+
+<div class="multiBarChart-container" style="margin-bottom: 40px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Serie storica del personale docente per genere	</div>
+	<div id="G18-PERS-RUOLO-STORIA" style="width: 800px; height: 400px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 400px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="400" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_12"><clipPath id="_ABSTRACT_RENDERER_ID_13"><rect x="134" y="77" width="533" height="247"></rect></clipPath></defs><rect x="0" y="0" width="800" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="34" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="680" y="77" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="88.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Donne</text></g><rect x="680" y="77" width="26" height="13" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g><g><rect x="680" y="98" width="107" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="711" y="109.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Uomini</text></g><rect x="680" y="98" width="26" height="13" stroke="none" stroke-width="0" fill="#5db7c3"></rect></g></g><g><rect x="134" y="77" width="533" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_13)"><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="282" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="241" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="200" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="159" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="118" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="77" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="134" y="303" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="262" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="221" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="180" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="139" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="134" y="98" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="148" y="178" width="80" height="145" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="254" y="171" width="80" height="152" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="361" y="164" width="79" height="159" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="467" y="158" width="80" height="165" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="573" y="161" width="80" height="162" stroke="none" stroke-width="0" fill="#5db7c3"></rect><rect x="148" y="122" width="80" height="55" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="254" y="112" width="80" height="58" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="361" y="99" width="79" height="64" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="467" y="94" width="80" height="63" stroke="none" stroke-width="0" fill="#ffa74f"></rect><rect x="573" y="94" width="80" height="66" stroke="none" stroke-width="0" fill="#ffa74f"></rect></g><g><rect x="134" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#333333"></rect></g></g><g></g><g><g><text text-anchor="middle" x="187.7" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2020</text></g><g><text text-anchor="middle" x="294.1" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2021</text></g><g><text text-anchor="middle" x="400.5" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2022</text></g><g><text text-anchor="middle" x="506.90000000000003" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2023</text></g><g><text text-anchor="middle" x="613.3" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2024</text></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Anno</th><th>Uomini</th><th>Donne</th></tr></thead><tbody><tr><td>2020</td><td>178</td><td>68</td></tr><tr><td>2021</td><td>187</td><td>71</td></tr><tr><td>2022</td><td>195</td><td>79</td></tr><tr><td>2023</td><td>202</td><td>79</td></tr><tr><td>2024</td><td>199</td><td>81</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 13px;">Uomini</div><div></div></div></div>		
+    <div class="objDescription" style="font-size: 1.1em;">Il personale docente comprende i professori di I e II fascia, i ricercatori a tempo indeterminato e determinato.</div>	
+</div><script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Anno','Ricercatori','Professori di II fascia', 'Professori di I fascia'],['2020',94,89,63],['2021',100,90,68],['2022',86,123,65],['2023',95,108,78],['2024',82,109,89]]);
+		var options = {width: 800,height: 400,bar: { groupWidth: '75%' },isStacked: true, chartArea: {left:50},colors: ['#93CDDD','#558ED5','#215968']};
+		var chart = new google.visualization.ColumnChart(document.getElementById('G19-PERS-QUAL-STORIA'));
+		chart.draw(data, options);
+	}
+</script>
+
+<div class="multiBarChart-container" style="margin-bottom: 40px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Serie storica del personale docente per qualifica</div>
+	<div id="G19-PERS-QUAL-STORIA" style="width: 800px; height: 400px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 400px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="400" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_14"><clipPath id="_ABSTRACT_RENDERER_ID_15"><rect x="50" y="77" width="533" height="247"></rect></clipPath></defs><rect x="0" y="0" width="800" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="596" y="77" width="191" height="55" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="596" y="77" width="191" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="627" y="88.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Professori di I fascia</text></g><rect x="596" y="77" width="26" height="13" stroke="none" stroke-width="0" fill="#215968"></rect></g><g><rect x="596" y="98" width="191" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="627" y="109.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Professori di II fascia</text></g><rect x="596" y="98" width="26" height="13" stroke="none" stroke-width="0" fill="#558ed5"></rect></g><g><rect x="596" y="119" width="191" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="627" y="130.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Ricercatori</text></g><rect x="596" y="119" width="26" height="13" stroke="none" stroke-width="0" fill="#93cddd"></rect></g></g><g><rect x="50" y="77" width="533" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_15)"><g><rect x="50" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="50" y="282" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="50" y="241" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="50" y="200" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="50" y="159" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="50" y="118" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="50" y="77" width="533" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="50" y="303" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="50" y="262" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="50" y="221" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="50" y="180" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="50" y="139" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="50" y="98" width="533" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="64" y="247" width="80" height="76" stroke="none" stroke-width="0" fill="#93cddd"></rect><rect x="170" y="242" width="80" height="81" stroke="none" stroke-width="0" fill="#93cddd"></rect><rect x="277" y="253" width="79" height="70" stroke="none" stroke-width="0" fill="#93cddd"></rect><rect x="383" y="246" width="80" height="77" stroke="none" stroke-width="0" fill="#93cddd"></rect><rect x="489" y="257" width="80" height="66" stroke="none" stroke-width="0" fill="#93cddd"></rect><rect x="64" y="174" width="80" height="72" stroke="none" stroke-width="0" fill="#558ed5"></rect><rect x="170" y="168" width="80" height="73" stroke="none" stroke-width="0" fill="#558ed5"></rect><rect x="277" y="153" width="79" height="99" stroke="none" stroke-width="0" fill="#558ed5"></rect><rect x="383" y="158" width="80" height="87" stroke="none" stroke-width="0" fill="#558ed5"></rect><rect x="489" y="167" width="80" height="89" stroke="none" stroke-width="0" fill="#558ed5"></rect><rect x="64" y="122" width="80" height="51" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="170" y="112" width="80" height="55" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="277" y="99" width="79" height="53" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="383" y="94" width="80" height="63" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="489" y="94" width="80" height="72" stroke="none" stroke-width="0" fill="#215968"></rect></g><g><rect x="50" y="323" width="533" height="1" stroke="none" stroke-width="0" fill="#333333"></rect></g></g><g></g><g><g><text text-anchor="middle" x="103.7" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2020</text></g><g><text text-anchor="middle" x="210.10000000000002" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2021</text></g><g><text text-anchor="middle" x="316.5" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2022</text></g><g><text text-anchor="middle" x="422.90000000000003" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2023</text></g><g><text text-anchor="middle" x="529.3" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">2024</text></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Anno</th><th>Ricercatori</th><th>Professori di II fascia</th><th>Professori di I fascia</th></tr></thead><tbody><tr><td>2020</td><td>94</td><td>89</td><td>63</td></tr><tr><td>2021</td><td>100</td><td>90</td><td>68</td></tr><tr><td>2022</td><td>86</td><td>123</td><td>65</td></tr><tr><td>2023</td><td>95</td><td>108</td><td>78</td></tr><tr><td>2024</td><td>82</td><td>109</td><td>89</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 13px;">Ricercatori</div><div></div></div></div>		
+    <div class="objDescription" style="font-size: 1.1em;">Il personale docente comprende i professori di I e II fascia, i ricercatori a tempo indeterminato e determinato.</div>	
+</div><!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Personale docente e ricercatore per classe di età - anno 2024</div>
+    <div id="T10-PERS-ETA_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T10-PERS-ETA" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 0px;">Classe di età</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Personale docente e ricercatore</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">di cui a contratto</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">&lt; 25</td><td class=" text-right">0</td><td class=" text-right">0</td></tr><tr role="row" class="even"><td class=" text-left">25 - 29</td><td class=" text-right">29</td><td class=" text-right">11</td></tr><tr role="row" class="odd"><td class=" text-left">30 - 34</td><td class=" text-right">53</td><td class=" text-right">24</td></tr><tr role="row" class="even"><td class=" text-left">35 - 39</td><td class=" text-right">50</td><td class=" text-right">25</td></tr><tr role="row" class="odd"><td class=" text-left">40 - 44</td><td class=" text-right">52</td><td class=" text-right">22</td></tr><tr role="row" class="even"><td class=" text-left">45 - 49</td><td class=" text-right">69</td><td class=" text-right">30</td></tr><tr role="row" class="odd"><td class=" text-left">50 - 54</td><td class=" text-right">66</td><td class=" text-right">20</td></tr><tr role="row" class="even"><td class=" text-left">55 - 59</td><td class=" text-right">76</td><td class=" text-right">15</td></tr><tr role="row" class="odd"><td class=" text-left">60 - 64</td><td class=" text-right">74</td><td class=" text-right">22</td></tr><tr role="row" class="even"><td class=" text-left">&gt;= 65</td><td class=" text-right">69</td><td class=" text-right">38</td></tr><tr role="row" class="odd"><td class=" text-left">Età sconosciuta</td><td class=" text-right">3</td><td class=" text-right">3</td></tr><tr role="row" class="even"><td class=" text-left">Totale</td><td class=" text-right">541</td><td class=" text-right">210</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">Il Personale docente e ricercatore comprende i docenti di ruolo, i ricercatori a tempo indeterminato e determinato, i titolari di assegni di ricerca ed i docenti a contratto.
+Il personale docente a contratto comprende tutti i professori cui sono stati conferiti incarichi di insegnamento – anche a titolo gratuito - per attività formative di base, caratterizzanti, affini o integrative non già ricoperti dal personale docente di ruolo.
+Tutti i dati sono estratti al 31/12/T ad eccezione dei docenti a contratto rilevati per anno accademico. Il dato indicato per questi ultimi si riferisce all'a.a. (T-1)/T.</div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T10-PERS-ETA').DataTable({
+                data: [["< 25","0","0"],["25 - 29","29","11"],["30 - 34","53","24"],["35 - 39","50","25"],["40 - 44","52","22"],["45 - 49","69","30"],["50 - 54","66","20"],["55 - 59","76","15"],["60 - 64","74","22"],[">= 65","69","38"],["Età sconosciuta","3","3"],["Totale","541","210"]],
+                columns: [{title:"Classe di età",type:"string",className:"text-left",width:"33%"},{title:"Personale docente e ricercatore",type:"num",className:"text-right",width:"33%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"di cui a contratto",type:"num",className:"text-right",width:"33%",render: $.fn.dataTable.render.number('.', ',', 0, '')}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T10-PERS-ETA')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div><!-- BAR CHART -->
+<div class="multiBarChart-container" style="margin-bottom: 50px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Personale docente e docenti a contratto per area scientifico disciplinare - Anno 2024</div>	
+	<div id="G20-PERS-SD" style="width: 800px; height: 450px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 450px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="450" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_16"><clipPath id="_ABSTRACT_RENDERER_ID_17"><rect x="400" y="20" width="320" height="405"></rect></clipPath><filter id="_ABSTRACT_RENDERER_ID_24"><feGaussianBlur in="SourceAlpha" stdDeviation="2"></feGaussianBlur><feOffset dx="1" dy="1"></feOffset><feComponentTransfer><feFuncA type="linear" slope="0.1"></feFuncA></feComponentTransfer><feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs><rect x="0" y="0" width="800" height="450" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="400" y="20" width="320" height="405" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_17)"><g><rect x="400" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="560" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="719" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="480" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="639" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="401" y="26" width="318" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="55" width="318" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="84" width="318" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="113" width="302" height="17" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="141" width="254" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="170" width="212" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="199" width="198" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="228" width="187" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="257" width="177" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="286" width="164" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="315" width="159" height="17" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="343" width="131" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="372" width="98" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="401" y="401" width="93" height="18" stroke="none" stroke-width="0" fill="#215968"></rect><rect x="719" y="26" width="0.5" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="719" y="55" width="0.5" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="719" y="84" width="0.5" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="704" y="113" width="15" height="17" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="656" y="141" width="63" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="614" y="170" width="105" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="600" y="199" width="119" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="589" y="228" width="130" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="579" y="257" width="140" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="566" y="286" width="153" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="561" y="315" width="158" height="17" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="533" y="343" width="186" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="500" y="372" width="219" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect><rect x="495" y="401" width="224" height="18" stroke="none" stroke-width="0" fill="#1e989b"></rect></g><g><rect x="400" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#333333"></rect></g><g><rect x="719" y="35" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="719" y="64" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="719" y="93" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="703" y="121" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="655" y="150" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="613" y="179" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="599" y="208" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="588" y="237" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="578" y="266" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="565" y="295" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="560" y="323" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="532" y="352" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="499" y="381" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="494" y="410" width="0" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g></g><g></g><g><g><text text-anchor="middle" x="400.5" y="442.4" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#444444">0</text></g><g><text text-anchor="middle" x="560" y="442.4" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#444444">50</text></g><g><text text-anchor="middle" x="719.5" y="442.4" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#444444">100</text></g></g><g><g><g><text text-anchor="end" x="715" y="39.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">100%</text></g></g><g><g><text text-anchor="end" x="715" y="68.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">100%</text></g></g><g><g><text text-anchor="end" x="715" y="97.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">100%</text></g></g><g><g><text text-anchor="end" x="699" y="125.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">95%</text></g></g><g><g><text text-anchor="end" x="651" y="154.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">80%</text></g></g><g><g><text text-anchor="end" x="609" y="183.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">66,7%</text></g></g><g><g><text text-anchor="end" x="595" y="212.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">62,5%</text></g></g><g><g><text text-anchor="end" x="584" y="241.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">59%</text></g></g><g><g><text text-anchor="end" x="574" y="270.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">55,8%</text></g></g><g><g><text text-anchor="end" x="561" y="299.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">51,7%</text></g></g><g><g><text text-anchor="end" x="556" y="327.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">50%</text></g></g><g><g><text text-anchor="end" x="528" y="356.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">41,4%</text></g></g><g><g><text text-anchor="end" x="495" y="385.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">31,1%</text></g></g><g><g><text text-anchor="end" x="490" y="414.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#ffffff">29,4%</text></g></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Area</th><th>Personale docente</th><th>Docenti a contratto</th></tr></thead><tbody><tr><td>02 - Scienze fisiche</td><td>100</td><td>0</td></tr><tr><td>03 - Scienze chimiche</td><td>100</td><td>0</td></tr><tr><td>04 - Scienze della terra</td><td>100</td><td>0</td></tr><tr><td>09 - Ingegneria industriale e dell'informazione</td><td>95</td><td>5</td></tr><tr><td>08 - Ingegneria civile e Architettura</td><td>80</td><td>20</td></tr><tr><td>05 - Scienze biologiche</td><td>66,7</td><td>33,3</td></tr><tr><td>01 - Scienze matematiche e informatiche</td><td>62,5</td><td>37,5</td></tr><tr><td>10 - Scienze dell'antichità, filologico-letterarie e storico-artistiche</td><td>59</td><td>41</td></tr><tr><td>11 - Scienze storiche, filosofiche, pedagogiche e psicologiche</td><td>55,8</td><td>44,2</td></tr><tr><td>13 - Scienze economiche e statistiche</td><td>51,7</td><td>48,3</td></tr><tr><td>07 - Scienze agrarie e veterinarie</td><td>50</td><td>50</td></tr><tr><td>06 - Scienze mediche</td><td>41,4</td><td>58,6</td></tr><tr><td>12 - Scienze giuridiche</td><td>31,1</td><td>68,9</td></tr><tr><td>14 - Scienze politiche e sociali</td><td>29,4</td><td>70,6</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 460px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 14px; font-weight: bold;">59</div><div></div></div></div>
+		<div style="padding: 50px 0px 50px 0px; text-align:center;">
+			<div style="display: inline-block; height: 14px; width: 28px; background-color: #215968;">&nbsp;</div>
+			<div style="display: inline-block; margin-left: 5px;">Personale docente</div>
+			<div style="display: inline-block; margin-left: 20px; height: 14px; width: 28px; background-color: #1e989b;">&nbsp;</div>
+			<div style="display: inline-block; margin-left: 5px;">Docenti a contratto</div>			
+		</div>
+    <div class="objDescription" style="font-size: 1.1em;"></div>	
+</div>
+<script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([['Area', 'Personale docente', { role: 'annotation' }, 'Docenti a contratto' ],["01 - Scienze matematiche e informatiche",62.5,'62,5%',37.5],["02 - Scienze fisiche",100,'100%',0],["03 - Scienze chimiche",100,'100%',0],["04 - Scienze della terra",100,'100%',0],["05 - Scienze biologiche",66.7,'66,7%',33.3],["06 - Scienze mediche",41.4,'41,4%',58.6],["07 - Scienze agrarie e veterinarie",50,'50%',50],["08 - Ingegneria civile e Architettura",80,'80%',20],["09 - Ingegneria industriale e dell'informazione",95,'95%',5],["10 - Scienze dell'antichità, filologico-letterarie e storico-artistiche",59.0,'59%',41.0],["11 - Scienze storiche, filosofiche, pedagogiche e psicologiche",55.8,'55,8%',44.2],["12 - Scienze giuridiche",31.1,'31,1%',68.9],["13 - Scienze economiche e statistiche",51.7,'51,7%',48.3],["14 - Scienze politiche e sociali",29.4,'29,4%',70.6]]);		
+		data.sort({column: 3});
+		var options = {width: 800, height: 450, legend: { position: 'none', alignment:'start' }, chartArea: {left:400, top:20, width:'40%', height:'90%'}, isStacked: true, bars: 'horizontal', colors: ['#215968', '#1e989b']};
+		var container = document.getElementById('G20-PERS-SD');
+		var chart = new google.visualization.BarChart(container);
+		chart.draw(data, options);
+	}
+</script><!-- BAR CHART -->
+<div class="multiBarChart-container" style="margin-bottom: 50px;">
+    <div class="objTitle" style="font-size: 1.5em; font-weight: bold;">Titolari di assegni di ricerca per area scientifico disciplinare - anno 2024</div>	
+	<div id="G21-PERS-SD-ASS" style="width: 800px; height: 450px;"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 800px; height: 450px;"><div aria-label="Un grafico." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="800" height="450" aria-label="Un grafico." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_18"><clipPath id="_ABSTRACT_RENDERER_ID_19"><rect x="400" y="20" width="320" height="405"></rect></clipPath><filter id="_ABSTRACT_RENDERER_ID_23"><feGaussianBlur in="SourceAlpha" stdDeviation="2"></feGaussianBlur><feOffset dx="1" dy="1"></feOffset><feComponentTransfer><feFuncA type="linear" slope="0.1"></feFuncA></feComponentTransfer><feMerge><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs><rect x="0" y="0" width="800" height="450" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="400" y="20" width="320" height="405" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://ustat.mur.gov.it/dati/didattica/italia/atenei-statali/cassino#_ABSTRACT_RENDERER_ID_19)"><g><rect x="400" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="506" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="613" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="719" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#cccccc"></rect><rect x="453" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="560" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#ebebeb"></rect><rect x="666" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#ebebeb"></rect></g><g><rect x="400" y="26" width="0.5" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="400" y="55" width="0.5" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="400" y="84" width="0.5" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="400" y="113" width="0.5" height="17" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="400" y="141" width="0.5" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="400" y="170" width="0.5" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="400" y="199" width="0.5" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="401" y="228" width="30" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="401" y="257" width="30" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="401" y="286" width="30" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="401" y="315" width="40" height="17" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="401" y="343" width="51" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="401" y="372" width="72" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect><rect x="401" y="401" width="270" height="18" stroke="none" stroke-width="0" fill="#96c8c8"></rect></g><g><rect x="400" y="20" width="1" height="405" stroke="none" stroke-width="0" fill="#333333"></rect></g><g><rect x="400.5" y="35" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="400.5" y="64" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="400.5" y="93" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="400.5" y="121" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="400.5" y="150" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="400.5" y="179" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="400.5" y="208" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="431" y="237" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="431" y="266" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="431" y="295" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="441" y="323" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="452" y="352" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="473" y="381" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect><rect x="671" y="410" width="12" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g></g><g></g><g><g><text text-anchor="middle" x="400.5" y="442.4" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#444444">0</text></g><g><text text-anchor="middle" x="506.8333" y="442.4" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#444444">20</text></g><g><text text-anchor="middle" x="613.1667" y="442.4" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#444444">40</text></g><g><text text-anchor="middle" x="719.5" y="442.4" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#444444">60</text></g></g><g><g><g><g><text text-anchor="start" x="412.5" y="39.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">0%</text><text text-anchor="start" x="412.5" y="39.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">0%</text></g></g></g><g><g><g><text text-anchor="start" x="412.5" y="68.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">0%</text><text text-anchor="start" x="412.5" y="68.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">0%</text></g></g></g><g><g><g><text text-anchor="start" x="412.5" y="97.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">0%</text><text text-anchor="start" x="412.5" y="97.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">0%</text></g></g></g><g><g><g><text text-anchor="start" x="412.5" y="125.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">0%</text><text text-anchor="start" x="412.5" y="125.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">0%</text></g></g></g><g><g><g><text text-anchor="start" x="412.5" y="154.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">0%</text><text text-anchor="start" x="412.5" y="154.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">0%</text></g></g></g><g><g><g><text text-anchor="start" x="412.5" y="183.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">0%</text><text text-anchor="start" x="412.5" y="183.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">0%</text></g></g></g><g><g><g><text text-anchor="start" x="412.5" y="212.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">0%</text><text text-anchor="start" x="412.5" y="212.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">0%</text></g></g></g><g><g><g><text text-anchor="start" x="443" y="241.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">5,9%</text><text text-anchor="start" x="443" y="241.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">5,9%</text></g></g></g><g><g><g><text text-anchor="start" x="443" y="270.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">5,9%</text><text text-anchor="start" x="443" y="270.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">5,9%</text></g></g></g><g><g><g><text text-anchor="start" x="443" y="299.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">5,9%</text><text text-anchor="start" x="443" y="299.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">5,9%</text></g></g></g><g><g><g><text text-anchor="start" x="453" y="327.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">7,8%</text><text text-anchor="start" x="453" y="327.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">7,8%</text></g></g></g><g><g><g><text text-anchor="start" x="464" y="356.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">9,8%</text><text text-anchor="start" x="464" y="356.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">9,8%</text></g></g></g><g><g><g><text text-anchor="start" x="485" y="385.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">13,7%</text><text text-anchor="start" x="485" y="385.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">13,7%</text></g></g></g><g><g><g><text text-anchor="start" x="683" y="414.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#000000" aria-hidden="true">51%</text><text text-anchor="start" x="683" y="414.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#000000">51%</text></g></g></g></g></g><g></g></svg><div aria-label="Una rappresentazione tabulare dei dati nel grafico." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>Area</th><th>Numerosità</th></tr></thead><tbody><tr><td>01 - Scienze matematiche e informatiche</td><td>0</td></tr><tr><td>02 - Scienze fisiche</td><td>0</td></tr><tr><td>03 - Scienze chimiche</td><td>0</td></tr><tr><td>04 - Scienze della terra</td><td>0</td></tr><tr><td>05 - Scienze biologiche</td><td>0</td></tr><tr><td>06 - Scienze mediche</td><td>0</td></tr><tr><td>07 - Scienze agrarie e veterinarie</td><td>0</td></tr><tr><td>08 - Ingegneria civile e Architettura</td><td>5,9</td></tr><tr><td>12 - Scienze giuridiche</td><td>5,9</td></tr><tr><td>14 - Scienze politiche e sociali</td><td>5,9</td></tr><tr><td>11 - Scienze storiche, filosofiche, pedagogiche e psicologiche</td><td>7,8</td></tr><tr><td>13 - Scienze economiche e statistiche</td><td>9,8</td></tr><tr><td>10 - Scienze dell'antichità, filologico-letterarie e storico-artistiche</td><td>13,7</td></tr><tr><td>09 - Ingegneria industriale e dell'informazione</td><td>51</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 460px; left: 810px; white-space: nowrap; font-family: Arial; font-size: 14px; font-weight: bold;">7,8</div><div></div></div></div>
+    <div class="objDescription" style="font-size: 1.1em;"></div>	
+</div>
+<script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart'], 'language': 'it'});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = new google.visualization.arrayToDataTable([["Area", "Numerosità", { role: 'annotation' }],["01 - Scienze matematiche e informatiche", 0,"0%"],["02 - Scienze fisiche", 0,"0%"],["03 - Scienze chimiche", 0,"0%"],["04 - Scienze della terra", 0,"0%"],["05 - Scienze biologiche", 0,"0%"],["06 - Scienze mediche", 0,"0%"],["07 - Scienze agrarie e veterinarie", 0,"0%"],["08 - Ingegneria civile e Architettura", 5.9,"5,9%"],["09 - Ingegneria industriale e dell'informazione", 51.0,"51%"],["10 - Scienze dell'antichità, filologico-letterarie e storico-artistiche", 13.7,"13,7%"],["11 - Scienze storiche, filosofiche, pedagogiche e psicologiche", 7.8,"7,8%"],["12 - Scienze giuridiche", 5.9,"5,9%"],["13 - Scienze economiche e statistiche", 9.8,"9,8%"],["14 - Scienze politiche e sociali", 5.9,"5,9%"]]);		
+		data.sort({column: 1});
+		var options = {width: 800, height: 450, legend: { position: 'none', alignment:'start' }, chartArea: {left:400, top:20, width:'40%', height:'90%'}, bars: 'horizontal', colors: ['#96c8c8'], annotations: {alwaysOutside: true,textStyle: {color: '#000000'}},vAxis : {format: 'decimal'}};
+		var container = document.getElementById('G21-PERS-SD-ASS');
+		var chart = new google.visualization.BarChart(container);
+		chart.draw(data, options);
+	}
+</script><!-- TABLE -->
+
+<!-- TABLE -->
+<div class="dataTable-container" style="margin-bottom: 40px;">
+    <div class="objTitle">Personale tecnico-amministrativo per area funzionale  - anno 2024</div>
+    <div id="T11-PERS-AREA_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row"><div class="col-sm-12"><table id="T11-PERS-AREA" class="dataTable no-footer table table-striped table-bordered" style="width: 100%;" role="grid"><thead><tr role="row"><th class="sorting_disabled text-left" rowspan="1" colspan="1" style="width: 0px;">Area funzionale</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">Personale tecnico-amm.vo</th><th class="sorting_disabled text-right" rowspan="1" colspan="1" style="width: 0px;">di cui donne</th></tr></thead><tbody><tr role="row" class="odd"><td class=" text-left">Dirigenza amministrativa</td><td class=" text-right">6</td><td class=" text-right">1</td></tr><tr role="row" class="even"><td class=" text-left">Amministrativa ed Amministrativa-gestionale</td><td class=" text-right">130</td><td class=" text-right">89</td></tr><tr role="row" class="odd"><td class=" text-left">Biblioteche</td><td class=" text-right">13</td><td class=" text-right">8</td></tr><tr role="row" class="even"><td class=" text-left">Servizi generali e tecnici</td><td class=" text-right">23</td><td class=" text-right">13</td></tr><tr role="row" class="odd"><td class=" text-left">Medico-odontoiatrica e Socio sanitaria</td><td class=" text-right">0</td><td class=" text-right">0</td></tr><tr role="row" class="even"><td class=" text-left">Tecnico-scientifica ed Elaborazione dati</td><td class=" text-right">74</td><td class=" text-right">19</td></tr><tr role="row" class="odd"><td class=" text-left">Area non individuata</td><td class=" text-right">0</td><td class=" text-right">0</td></tr><tr role="row" class="even"><td class=" text-left">Totale</td><td class=" text-right">246</td><td class=" text-right">130</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div>
+	<div class="objDescription" style="margin-top: 10px; font-size: 1.0em;">Il Personale tecnico-amministrativo comprende tecnici – amministrativi e dirigenti con contratto a tempo indeterminato e determinato.
+Dati estratti al 31/12/T</div>
+    <script type="text/javascript" class="init">
+        $(function() {
+            $('#T11-PERS-AREA').DataTable({
+                data: [["Dirigenza amministrativa","6","1"],["Amministrativa ed Amministrativa-gestionale","130","89"],["Biblioteche","13","8"],["Servizi generali e tecnici","23","13"],["Medico-odontoiatrica e Socio sanitaria","0","0"],["Tecnico-scientifica ed Elaborazione dati","74","19"],["Area non individuata","0","0"],["Totale","246","130"]],
+                columns: [{title:"Area funzionale",type:"string",className:"text-left",width:"60%"},{title:"Personale tecnico-amm.vo",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')},{title:"di cui donne",type:"num",className:"text-right",width:"20%",render: $.fn.dataTable.render.number('.', ',', 0, '')}],
+                paging: false, //hide pagination
+                ordering: false, //no column ordering function
+                info: false, //no info at top of table
+                filter: false //no search box
+			});
+            $('#T11-PERS-AREA')
+				.removeClass( 'display' )
+				.addClass('table table-striped table-bordered');
+        });
+    </script>
+</div>
+                    </div>	
+					
+					<div class="tab-pane" id="interventi" role="tabpanel" style="background-color: #ffffff;min-height: 400px;padding: 30px 10px 0px 10px;">	
+								<div class="text-center">
+									<p style="font-size: 18px;">Nella regione non sono presenti dati.<br> Consulta la sezione dedicata agli <a href="http://dati.ustat.miur.it/organization/ustat">Open Data</a></p>
+								</div>		
+
+					</div>
+					<div class="tab-pane" id="spesa" role="tabpanel" style="background-color: #ffffff;min-height: 400px;padding: 30px 10px 0px 10px;">
+								<div class="text-center">
+									<p style="font-size: 18px;">Nella regione non sono presenti dati.<br> Consulta la sezione dedicata agli <a href="http://dati.ustat.miur.it/organization/ustat">Open Data</a></p>
+								</div>		
+
+					</div>
+					<!--
+					<div class="tab-pane" id="sedi" role="tabpanel" style="background-color: #ffffff;min-height: 400px;padding: 30px 10px 0px 10px;">						
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>                                        
+                                        <th>Regione</th>
+										<th>Provincia</th>
+										<th>Comune</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>								
+					</div>
+					-->
+				</div>
